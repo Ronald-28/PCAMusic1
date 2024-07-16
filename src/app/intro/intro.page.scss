@@ -1,0 +1,46 @@
+swiper-container {
+    width: 80%;
+    height: 80%;
+  }
+  
+  swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cool-title {
+    color: aquamarine;
+  }
+  
+  .custom-bg-color {
+    --background: brown;
+  }
+  
+  .sp-bg-color {
+    background-color: blue;
+  }
+  
+  //ion-avatar{
+  //  --border-radius: 4px;
+  //}
+  
+  .style-avatar {
+    --border-radius: 0px;
+  }
+  
+  :root {
+    --first-color: #16f;
+    --second-color: #ff7;
+  }
+  
+  #container {
+    --first-color: #290;
+  }
+  
+  #thirdParagraph {
+    background-color: var(--first-color);
+    color: var(--second-color);
+  }
+  

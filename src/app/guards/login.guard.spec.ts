@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { IntroGuard } from './intro.guard';
+import { LoginGuard } from './login.guard'; 
 
-describe('IntroGuard', () => {
-  let guard: IntroGuard;
+describe('LoginGuard', () => {
+  let guard: LoginGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(IntroGuard); 
+    guard = TestBed.inject(LoginGuard); 
   });
 
   it('should be created', () => {
@@ -16,3 +16,4 @@ describe('IntroGuard', () => {
   });
 });
 
+  

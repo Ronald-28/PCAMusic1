@@ -1,17 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-<style>
-    body{
-        text-align: center;
-        background-color: brown;
-    }
-</STyle>
-<body>
+
+<h1>Artistas</h1>
+<swiper-container slides-per-view="4" speed="400">
+        <swiper-slide *ngFor="let artstis of artists">
+            <ion-avatar (click)="showSongs(artstis)">
+                <img src="{{artstis.image}}"/>
+                <span>{{artstis.name}}</span>
+        </ion-avatar>
+    </swiper-slide>
+</swiper-container>
     <p style="font-size: 20px; line-height: 1.5;">¡HUNDE EL ICONO!<br>
 <br>
 <ion-icon name="finger-print-outline" (click)="close()"></ion-icon>
 </p> 
-</body>
-
 </ion-content>
 
 

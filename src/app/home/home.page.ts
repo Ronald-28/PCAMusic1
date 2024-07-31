@@ -14,6 +14,13 @@ export class HomePage implements OnInit{
 
     artistsJson: any;
     artists: any
+    song = {
+      name: '',
+      playing: false,
+      preview_url: '',
+    }
+    currentSong: any = {};
+    newTime: any;
     constructor(private router: Router, private musicService: MusicService, private modalController: ModalController) {}
 
     ngOnInit() {
@@ -31,18 +38,49 @@ export class HomePage implements OnInit{
 
     async showSongs(artstis: any){
       console.log(artstis)
-      const song = await this.musicService.getArtistTrack(artstis.id);
+      const songs = await this.musicService.getArtistTrack(artstis.id);
       const modal = await this.modalController.create(
         {
           component: SongModalPage,
           componentProps: {
             name: artstis.name,
             id: artstis.id,
-            song: song
+            songs: songs
           }
         }
       );
+
       modal.present();
+    }
+
+
+    play(){
+      this.currentSong = new Audio(this.song.preview_url);
+      this.currentSong.play();
+      this.currentSong.addEventListener("timeupdate", ()=>{
+        this.newTime = (1 / this.currentSong.duration) * this.currentSong.currentTime;
+      })
+      this.song.playing = true;
+    }
+    pause(){
+      this.currentSong.pause();
+      this.song.playing = false;
+    }
+
+    parseTime(time = "1:00"){
+      if (time){
+        const partTime = parseInt(time.toString().split(".")[0], 10);
+        let minutes = Math.floor(partTime/60).toString();
+        if (minutes.length == 1){
+          minutes = "0" + minutes;
+        }
+        let seconds = (partTime % 60).toString();
+        if (seconds.length == 1){
+          seconds = "0" + seconds;
+        }
+        return minutes + ":" + seconds
+      }
+      return null
     }
 
 }

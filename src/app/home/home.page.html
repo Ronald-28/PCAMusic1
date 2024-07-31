@@ -1,17 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-<style>
-    body{
-        text-align: center;
-        background-color: brown;
-    }
-</STyle>
-<body>
-    <p style="font-size: 20px; line-height: 1.5;">¡HUNDE EL ICONO!<br>
+
+<h1>Artistas</h1>
+<swiper-container slides-per-view="4" speed="400">
+        <swiper-slide *ngFor="let artstis of artists">
+            <ion-avatar (click)="showSongs(artstis)">
+                <img src="{{artstis.image}}"/>
+                <span>{{artstis.name}}</span>
+        </ion-avatar>
+    </swiper-slide>
+</swiper-container>
+    <p style="font-size: 20px; line-height: 1.5;">CLICK AL ICONO!<br>
 <br>
 <ion-icon name="finger-print-outline" (click)="close()"></ion-icon>
 </p> 
-</body>
-
 </ion-content>
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="ion-text-start">{{ parseTime(currentSong.currentTime) || "0:00" }}</ion-col>
+            <ion-col class="ion-text-end">{{ parseTime(currentSong.duration) || "0:00" }}</ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-progress-bar [value]="newTime || 0"></ion-progress-bar>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-icon name="heart"></ion-icon>
+            </ion-col>
+            <ion-col>
+                <ion-text>{{song.name || "Aun no has seleccionado cancion"}}</ion-text>
+            </ion-col>
+            <ion-col class="ion-text-end">
+                <ion-icon name="play" (click)="play()" *ngIf="!song.playing"></ion-icon>
+                <ion-icon name="pause-circle-outline" (click)="pause()" *ngIf="song.playing"></ion-icon> 
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>
+
 
 

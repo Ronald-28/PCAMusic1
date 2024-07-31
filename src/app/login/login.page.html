@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Iniciar Sesion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content class="content-centered">
+    <figure class="image-container">
+      <img src="assets/imagen/p1.png">
+    </figure>
+    
+  <form [formGroup]="loginForm" (ngSubmit)="(loginUser(loginForm.value))">
+      
+    <ion-item>
+        <ion-input label="Email" labelPlacement="floating" placeholder="Correo Electronico" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      
+      <div>
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div *ngIf="
+            (loginForm.get('email')?.hasError(validation.type) &&
+            loginForm.get('email')?.dirty)">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
+
+      <div>
+        <ng-container *ngFor="let validation of validation_messages.password">
+          <div *ngIf="
+            (loginForm.get('password')?.hasError(validation.type) &&
+            loginForm.get('password')?.dirty)">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
+
+    <ion-button
+      type="submit"
+      [disabled]="!loginForm.valid"
+      expand="block"
+      shape="round"
+      fill="solid"
+    >
+      Login
+      <ion-icon name="caret-forward-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="goToLogin()"
+    type="submit"
+    expand="block"
+    shape="round"
+    fill="solid"
+    color="tertiary"
+  >
+  <ion-icon name="arrow-undo-outline"></ion-icon>
+    register
+  </ion-button>
+  
+  </form>
+
+
+</ion-content>
+
+<style>
+
+  ion-content {
+  --background: #000;
+  --background: linear-gradient(155deg, #ff0000, #000);
+}
+
+  .content-centered {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+  }
+
+  .image-container {
+    margin: 20px 0;
+  }
+
+  
+</style>
+
+
+

@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-title (click)="goToLogin()"> <ion-icon name="arrow-undo-outline"> </ion-icon> </ion-title>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+  <figure>
+    <img src="assets/imagen/p1.png">
+  </figure>
+  <form [formGroup]="registerForm" (ngSubmit)="(register(registerForm.value))">
+
+    <ion-item>
+      <ion-input label="Nombre" placeholder="Escriba su Nombre" formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Apellido" placeholder="Escriba su Apellido" formControlName="last_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Email" placeholder="Escriba su Email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Contraseña" type="password" placeholder="Escriba su Contraseña" formControlName="password"></ion-input>
+    </ion-item>
+
+    <div>
+      <ng-container *ngFor="let validation of validation_messages.name">
+        <div *ngIf="
+          (registerForm.get('name')?.hasError(validation.type) &&
+          registerForm.get('name')?.dirty)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <div>
+      <ng-container *ngFor="let validation of validation_messages.last_name">
+        <div *ngIf="
+          (registerForm.get('last_name')?.hasError(validation.type) &&
+          registerForm.get('last_name')?.dirty)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <div>
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div *ngIf="
+          (registerForm.get('email')?.hasError(validation.type) &&
+          registerForm.get('email')?.dirty)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <div>
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div *ngIf="
+          (registerForm.get('password')?.hasError(validation.type) &&
+          registerForm.get('password')?.dirty)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    
+    <ion-button
+    type="submit"
+    [disabled]="!registerForm.valid"
+    expand="block"
+    shape="round"
+    fill="solid"
+  >
+    Registrarse
+    <ion-icon name="caret-forward-outline"></ion-icon>
+  </ion-button>
+
+  </form>
+</ion-content>
+
+<style>
+
+  ion-content{
+    text-align: center;
+    --background: #000;
+    --background: linear-gradient(155deg, #8ca715, #000);
+  }
+
+  .content-centered {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+  }
+
+  .image-container {
+    margin: 20px 0;
+  }
+
+</style>
+
